@@ -1,0 +1,16 @@
+<launch>
+  <arg name="show_rviz" default="false"/>
+  <arg name="output" default="log"/>
+  <arg name="resolution" default="qhd"/>
+  <include file="$(find kinect2_bridge)/launch/kinect2_bridge.launch">
+    <arg name="output" value="log"/>
+    <arg name="publish_tf" value="true"/>
+  </include>
+  <node name="fingertip_detector" pkg="fingertip_detector" type="fingertip_detector.py" output="$(arg output)">
+    <param name="image_topic" value="/kinect2/$(arg resolution)/image_color_rect"/>
+    <param name="depth_image_topic" value="/kinect2/$(arg resolution)/image_depth_rect"/>
+  </node>
+  <group if="$(arg show_rviz)">
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find fingertip_detector)/config/config.rviz"/>
+  </group>
+</launch>
