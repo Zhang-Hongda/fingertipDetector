@@ -2,6 +2,7 @@
   <arg name="show_rviz" default="false"/>
   <arg name="output" default="log"/>
   <arg name="resolution" default="qhd"/>
+  <node name="transform_publisher_node" pkg="transform_publisher" type="transform_publisher" />
   <include file="$(find kinect2_bridge)/launch/kinect2_bridge.launch">
     <arg name="output" value="log"/>
     <arg name="publish_tf" value="true"/>

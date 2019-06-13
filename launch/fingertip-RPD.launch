@@ -1,6 +1,5 @@
 <launch>
 	<arg name="topic" default="/kinect2/qhd/points"/>
-	<node name="transform_publisher_node" pkg="transform_publisher" type="transform_publisher" />
 	<include file="$(find pcl_tracker)/launch/ur5_bringup.launch"> 
 		<arg name="show_rviz" value="true"/>
 	</include>

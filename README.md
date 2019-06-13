@@ -34,4 +34,6 @@ roslaunch fingertip_detector fingertip_detector.launch
 ```
 roslaunch fingertip_detector fingertip-RPD.launch 
 ```
+* System screenshot
 
+![fingertip-RPD.png](./png/fingertip-RPD.png)
