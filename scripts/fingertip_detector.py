@@ -16,7 +16,8 @@ import tf
 
 class simple_hgr:
     def __init__(self):
-        self.image_pub = rospy.Publisher("/frame", Image)
+        self.image_pub = rospy.Publisher("/frame", Image, queue_size=
+        1)
         self.bridge = CvBridge()
         self.image_topic = rospy.get_param(
             "~image_topic", "/kinect2/qhd/image_color_rect")
@@ -86,10 +87,11 @@ class simple_hgr:
         fy = 543.817235985575
         depthScale = 1000
         depth = depth_frame[ft_point[1], ft_point[0]]
+        y_shift = -0.02 # mm
         if (depth != 0 and depth != None):
             z = depth/depthScale
             x = -(ft_point[0]-cx)*z/fx
-            y = -(ft_point[1]-cy)*z/fy
+            y = -(ft_point[1]-cy)*z/fy+y_shift
             self.br.sendTransform((x, y, z), (0, 0, 0, 1),
                                   rospy.Time.now(), "tool", "kinect2_link")
             return [x, y, z]
