@@ -14,7 +14,7 @@ import message_filters
 import tf
 
 
-class simple_hgr:
+class fingertip_detector:
     def __init__(self):
         self.image_pub = rospy.Publisher("/frame", Image, queue_size=
         1)
@@ -102,7 +102,7 @@ if __name__ == '__main__':
         rospy.init_node("simple_hgr_node", anonymous=True,
                         disable_signals=True)
         rospy.loginfo("Starting simple_hgr node")
-        simple_hgr()
+        fingertip_detector()
         rospy.spin()
     except KeyboardInterrupt:
         print "Shutting down simple_hgr node."
